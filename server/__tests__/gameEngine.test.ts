@@ -6,7 +6,7 @@ describe("GameEngine", () => {
   let engine: GameEngine;
 
   beforeEach(() => {
-    engine = new GameEngine("plotline.yaml");
+    engine = new GameEngine("plotline.test.yaml");
   });
 
   test("loads start node", () => {

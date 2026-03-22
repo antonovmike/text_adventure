@@ -1,41 +1,242 @@
 start:
   id: start
   branch: init
-  text: "Initial text"
-  options:
-    - label: "Option 1"
-      next: msg1
-    - label: "Option 2"
-      next: msg2
-    - label: "Option 3"
-      next: death
+  text: |
+    Rain hammers the grimy window of your coffin apartment in the Stacks. 
+    Your neural implant buzzes—a message from an unknown contact: "We know what 
+    you saw at Helix Corp. Meet us, or they'll find you first."
 
-msg1:
-  id: msg1
-  branch: path_1
-  text: "Message 1"
+    Your credit balance: ¥847. Your options are limited.
   options:
-    - label: "Option 4"
-      next: msg3
-    - label: "Option 3"
-      next: death
+    - label: "Contact Helix Corp security—maybe they'll pay for your silence"
+      next: corporate_offer
+    - label: "Head to the Rusty Servo bar in the Undercity—neutral ground"
+      next: neutral_meeting
+    - label: "Follow the anonymous message to the Resistance safehouse"
+      next: resistance_contact
 
-msg2:
-  id: msg2
-  branch: path_2
-  text: "Message 2"
+# GOOD BRANCH - RESISTANCE PATH
+resistance_contact:
+  id: resistance_contact
+  branch: good
+  text: |
+    The safehouse is hidden behind a black market noodle shop. Inside, 
+    a woman with chrome eyes and a faded resistance tattoo greets you.
+
+    "You witnessed the genetic experiments," she says quietly. "Children, 
+    modified without consent. We're building a case to expose Helix. 
+    But we need someone on the inside."
+  options:
+    - label: "Agree to go undercover at Helix Corp"
+      next: undercover_success
+    - label: "Ask for protection first—you're not risking your life for free"
+      next: resistance_deal
+    - label: "Leave—this is too dangerous"
+      next: exile_ending
+
+undercover_success:
+  id: undercover_success
+  branch: good
+  text: |
+    Six months later. You've smuggled terabytes of evidence out of Helix's 
+    servers. The resistance broadcasts everything—encrypted files, video logs, 
+    genetic blueprints. The city erupts.
+
+    Protests flood the streets. Helix stock crashes. Three executives are 
+    arrested by international authorities. The modified children are identified 
+    and offered sanctuary.
+
+    You disappear into a new identity, knowing you changed the world.
   options: []
 
-death:
-  id: death
+resistance_deal:
+  id: resistance_deal
+  branch: good
+  text: |
+    "Fair enough," the woman nods. "We'll set you up with new credentials, 
+    a safehouse, and a dead-drop system. You work with us, we keep you alive."
+
+    Over the next year, you become a ghost in the machine—leaking documents, 
+    exposing corruption, helping others escape corporate control. It's dangerous, 
+    but you're making a real difference.
+
+    One day, you receive a message: "Thank you. —The Children." 
+    You smile. Some things matter more than credits.
+  options: []
+
+# NEUTRAL BRANCH - SURVIVAL PATH
+neutral_meeting:
+  id: neutral_meeting
+  branch: neutral
+  text: |
+    The Rusty Servo reeks of synth-whiskey and ozone. A figure in a 
+    reflective jacket slides into the booth across from you—no name, 
+    just a reputation for information brokerage.
+
+    "You've got a problem. Helix wants you gone. Resistance wants you 
+    useful. I can make both problems disappear... for a price."
+  options:
+    - label: "Negotiate a price—you're not broke yet"
+      next: broker_deal
+    - label: "Ask what the resistance is actually offering"
+      next: neutral_choice
+    - label: "Walk away—this is a setup"
+      next: ambush_escape
+
+broker_deal:
+  id: broker_deal
+  branch: neutral
+  text: |
+    "¥50,000 and I erase you from every database—Helix, government, 
+    resistance. You become a ghost. New face, new name, new life."
+
+    You negotiate down to ¥35,000. It takes everything you have, but 
+    three weeks later, you're on a transport ship to the Mars colonies, 
+    watching Earth shrink in the viewport.
+
+    You're alive. You're free. But you're also alone, and the memory 
+    of those children haunts your dreams in the red Martian dust.
+  options: []
+
+neutral_choice:
+  id: neutral_choice
+  branch: neutral
+  text: |
+    "The resistance wants you to testify. Go public. They'll protect you 
+    during the trial," the broker says. "But public means visible. Visible 
+    means vulnerable."
+
+    You think about it. You could disappear. You could fight. Or...
+
+    "What if I just stay quiet?" you ask.
+
+    The broker smiles. "Then you live a short, paranoid life, always 
+    looking over your shoulder. But hey—at least you keep your credits."
+  options:
+    - label: "Testify anyway—do the right thing"
+      next: public_testimony
+    - label: "Take the broker's original deal and vanish"
+      next: broker_deal
+
+public_testimony:
+  id: public_testimony
+  branch: neutral
+  text: |
+    The trial is broadcast globally. You sit in the witness box, describing 
+    what you saw—the screaming children, the neural implants being forced 
+    into their skulls, the "success rates" written on whiteboards.
+
+    Helix is fined ¥2 billion. Three executives get 15 years. The children 
+    are freed.
+
+    You receive ¥100,000 in whistleblower compensation. It's not much, 
+    but it's enough to start over. You open a small clinic in the Undercity, 
+    helping people remove unwanted implants. It's honest work.
+  options: []
+
+ambush_escape:
+  id: ambush_escape
+  branch: neutral
+  text: |
+    Good instinct. Three Helix security operatives are waiting in the alley 
+    behind the bar. You run. Bullets spark off the neon signs as you vault 
+    over a railing into the lower city levels.
+
+    You lose them in the maze of catwalks and shipping containers. 
+    For the next month, you survive on scraps and paranoia. Eventually, 
+    you make contact with a smuggler who gets you off-world.
+
+    You live, but you live small—always moving, always afraid. 
+    The price of staying neutral was higher than you expected.
+  options: []
+
+# BAD BRANCH - CORPORATE PATH
+corporate_offer:
+  id: corporate_offer
+  branch: bad
+  text: |
+    You dial the Helix Corp hotline. Within an hour, you're in a 
+    gleaming office on the 200th floor, facing a woman in a tailored 
+    suit made of smart-fabric that shifts colors.
+
+    "What you saw was classified research," she says smoothly. "Forget 
+    it, and we'll make sure you're very comfortable. ¥500,000. New 
+    apartment. Upgraded implants. Everything."
+  options:
+    - label: "Take the money and sign the NDA"
+      next: corporate_slave
+    - label: "Ask for more—you're worth more than that"
+      next: corporate_greed
+    - label: "Try to bluff—say you already sent copies to the resistance"
+      next: corporate_betrayal
+
+corporate_slave:
+  id: corporate_slave
+  branch: bad
+  text: |
+    Five years later. You live in a luxury penthouse, but you're a prisoner 
+    in silk chains. Helix owns you. They monitor your implants, your messages, 
+    your movements. You attend parties with other corporate slaves, all of you 
+    pretending everything is fine.
+
+    One day, your implant glitches and shows you a news feed that wasn't 
+    supposed to get through. The children from the lab are dead. Organ 
+    harvesting. Helix needed the parts.
+
+    You try to access the resistance network, but Helix catches you. 
+    Your implant is remotely fried. They offer you a choice: a quiet 
+    death, or a lifetime in a corporate medical facility as a test subject.
+
+    You choose the former.
+  options: []
+
+corporate_greed:
+  id: corporate_greed
+  branch: bad
+  text: |
+    "¥1 million," you say. "And a seat on a subsidiary board."
+
+    The woman smiles. "Ambitious. I like that." She agrees.
+
+    But greed has a way of catching up. Within two years, you know too much. 
+    You've attended meetings about black projects, seen the bodies, understood 
+    the scope of Helix's crimes. You've become a liability.
+
+    One morning, your apartment door is sealed. Helix floods it with 
+    nitrogen. Your final thought, as the cold burns your lungs, is that 
+    ¥1 million wasn't nearly enough.
+  options: []
+
+corporate_betrayal:
+  id: corporate_betrayal
+  branch: bad
+  text: |
+    The woman's smile doesn't waver. "You're lying. We've been monitoring 
+    your neural implant since you walked in. You haven't contacted anyone."
+
+    She stands. "Take them to the facility."
+
+    The next weeks are a blur of pain and chemicals. Helix is testing 
+    something new—a neural wipe procedure. They want to see if they can 
+    erase memories and implant false ones. You're the perfect test subject: 
+    no friends, no family, no one to notice you're gone.
+
+    You wake up one day with a new name, a new face, and memories of a 
+    life you never lived. You work for Helix now, and you don't even know it.
+  options: []
+
+# ESCAPE ENDING
+exile_ending:
+  id: exile_ending
   branch: end
-  text: "You have died"
-  options: []
+  text: |
+    You walk away from the safehouse and never look back. 
 
-msg3:
-  id: msg3
-  branch: path_1
-  text: "Message 3"
-  options:
-    - label: "Option 3"
-      next: death
+    The next morning, you book a one-way ticket to the Indonesian 
+    Arcologies—far enough away that neither Helix nor the resistance 
+    will find you. You spend the rest of your life as an anonymous 
+    data analyst, watching the world's conflicts from a distance.
+
+    Sometimes you wonder if you made the right choice. But mostly, 
+    you just try to forget.
+  options: []

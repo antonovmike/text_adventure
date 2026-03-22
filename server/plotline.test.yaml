@@ -1,0 +1,33 @@
+start:
+  id: start
+  branch: init
+  text: "Initial text"
+  options:
+    - label: "Option 1"
+      next: msg1
+    - label: "Option 2"
+      next: msg2
+    - label: "Option 3"
+      next: death
+
+msg1:
+  id: msg1
+  branch: path_1
+  text: "Message 1"
+  options:
+    - label: "Option 4"
+      next: msg3
+    - label: "Option 3"
+      next: death
+
+msg2:
+  id: msg2
+  branch: path_2
+  text: "Message 2"
+  options: []
+
+death:
+  id: death
+  branch: end
+  text: "You have died"
+  options: []
