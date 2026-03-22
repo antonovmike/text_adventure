@@ -1,10 +1,11 @@
 import { beforeAll, describe, test, expect } from "@jest/globals";
-import request from "supertest";
+import request, { Test } from "supertest";
 
 import { createApp } from "../src/server.js";
+import TestAgent from "supertest/lib/agent.js";
 
 describe("API", () => {
-  let api: any;
+  let api: TestAgent<Test>;
 
   beforeAll(() => {
     const app = createApp("plotline.test.yaml");
