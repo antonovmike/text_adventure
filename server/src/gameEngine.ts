@@ -12,6 +12,9 @@ export class GameEngine {
     const file = fs.readFileSync(filePath, "utf8");
     this.plotline = yaml.load(file) as Plotline;
     this.currentNode = this.plotline["start"];
+
+    console.log(Object.keys(this.plotline));
+    console.log(this.plotline["start"]);
   }
 
   getState() {
