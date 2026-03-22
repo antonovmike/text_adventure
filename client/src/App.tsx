@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getState, makeChoice } from "./api.ts";
+import { getState, makeChoice, reset } from "./api.ts";
 
 interface Option {
   label: string;
@@ -25,17 +25,27 @@ function App() {
     setNode(newNode);
   };
 
+  const handleReset = async () => {
+    const startNode = await reset();
+    setNode(startNode);
+  };
+
   if (!node) return <div>Loading...</div>;
 
   return (
-    <div style={{ padding: "20px", fontFamily: "monospace" }}>
-      <p>{node.text}</p>
-      {node.options.map((opt, i) => (
-        <li key={i}>
-          <button onClick={() => handleChoice(i)}>{opt.label}</button>
-        </li>
-      ))}
-    </div>
+    <>
+      <div style={{ padding: "20px", fontFamily: "monospace" }}>
+        <p>{node.text}</p>
+        {node.options.map((opt, i) => (
+          <li key={i}>
+            <button onClick={() => handleChoice(i)}>{opt.label}</button>
+          </li>
+        ))}
+      </div>
+      <div>
+        <button onClick={() => handleReset()}>Try again</button>
+      </div>
+    </>
   );
 }
 

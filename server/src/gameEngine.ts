@@ -27,4 +27,8 @@ export class GameEngine {
     this.currentNode = this.plotline[option.next];
     return this.currentNode;
   }
+
+  reset() {
+    this.currentNode = this.plotline["start"];
+  }
 }

@@ -11,3 +11,10 @@ export async function makeChoice(index: number) {
   });
   return res.json();
 }
+
+export async function reset() {
+  const res = await fetch("http://localhost:3000/reset", {
+    method: "POST",
+  });
+  return res.json();
+}

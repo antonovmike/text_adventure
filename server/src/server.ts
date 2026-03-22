@@ -21,5 +21,10 @@ export function createApp(filePath: string = "plotline.yaml") {
     }
   });
 
+  app.post("/reset", (_req, res) => {
+    engine.reset();
+    res.json(engine.getState());
+  });
+
   return app;
 }
