@@ -38,12 +38,16 @@ function App() {
         <p>{node.text}</p>
         {node.options.map((opt, i) => (
           <li key={i}>
-            <button onClick={() => handleChoice(i)}>{opt.label}</button>
+            <button className="button" onClick={() => handleChoice(i)}>
+              {opt.label}
+            </button>
           </li>
         ))}
       </div>
       <div>
-        <button onClick={() => handleReset()}>Try again</button>
+        <button className="button" onClick={() => handleReset()}>
+          Try again
+        </button>
       </div>
     </>
   );
